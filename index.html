@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+
+
+    <style>
+        .color-red{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="root">
+    <input type="text" id="input" v-model="message">
+    <p>value is {{message}}</p>
+
+    {{foo}}
+
+    <ul>
+        <li v-for="name in names" v-text="name"></li>
+    </ul>
+
+    <input id="input" type="text" v-model="newName" v-on:keyUp="addName">
+    <button @click="addName">Add name</button>
+
+    <button v-bind:title="title">Hover over me</button>
+    <button :title="title">Hover over me</button>
+
+    <h1 :class="className"> Helllo</h1>
+
+
+</div>
+
+
+<!-- You can use the v-model directive to create two-way
+data bindings on form input, textarea, and select elements.
+It automatically picks the correct way to update the element based on the input type.
+Although a bit magical, v-model is essentially syntax sugar for updating data on user
+input events, plus special care for some edge cases.
+
+v-on:click isto kao @click
+v-bind:title isto :title
+-->
+
+<script>
+
+
+    new Vue({
+        el: '#root',
+        data: {
+            message:'hello World',
+            foo:'bar',
+            newName:'',
+            names:['joe','mike','jon'],
+
+            title:'new title',
+
+            className:'color-red',
+        },
+        methods: {
+            addName(){
+                this.names.push(this.newName);
+                this.newName='';
+            }
+        }
+
+
+    });
+
+
+
+</script>
+
+</body>
+</html>
